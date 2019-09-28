@@ -39,7 +39,8 @@ export default {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;        
+        justify-content: center;  
+        user-select: none;      
     }
 
     .task-title {

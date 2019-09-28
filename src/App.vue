@@ -18,11 +18,15 @@ import TaskGrid from "@/components/TaskGrid"
 export default {
     components: {TaskProgress, NewTask, TaskGrid},
 
+    created: function() {
+        const json = localStorage.getItem('tasks');
+        this.tasks = JSON.parse(json) || [];
+    },
+
     data() {
         return {
 			tasks: [],
         }
-
     },
 
     computed: {
@@ -30,9 +34,17 @@ export default {
 		progress() { 
             return this.tasks.length === 0 ? 0 : Math.round( 100 / this.tasks.length * this.tasksDoneCount);
         },
-		
 	},
-	
+    
+    watch: {
+        tasks: {
+            deep: true,
+            handler() {
+                localStorage.setItem('tasks', JSON.stringify(this.tasks));
+            }
+        }
+    },
+
     methods: {
         createNewTask(taskTitle) { 
             if ( this.tasks.find(arr => arr.title === taskTitle) === undefined) {
