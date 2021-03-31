@@ -81,16 +81,24 @@ export default {
 }
 
 .task.pending {
-    background-color: #f44336;
-    border-left: 12px solid #b73229;
+    background-color: #d1382e;
+    border-left: 12px solid #b8271c;
+}
+.task.pending:hover {
+    background-color: #fa4538;
+    border-left: 12px solid #d83d32;
 }
 
 .task.done {
     background-color: #4caf50;
     border-left: 12px solid #0a8f08;
 }
+.task.done:hover {
+    background-color:#60d463;
+    border-left: 12px solid #0fc40c;
+}
 
-.task-text .done {
+.task-text.done {
     text-decoration: line-through;
 }
 

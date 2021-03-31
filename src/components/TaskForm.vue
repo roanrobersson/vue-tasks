@@ -62,11 +62,15 @@ export default {
     width: 50px;
     margin: none;
     border: none;
-    background-color: #2196f3;
+    background-color: #1d80d1;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     color: white;
     font-size: 32px;
     outline: none;
+}
+
+.task-form-button:hover {
+    background-color: #3da8ff;
 }
 </style>
