@@ -1,9 +1,11 @@
 <template>
 	<div id="app">
-		<h1>Tarefas</h1>
+		<div class="main-navbar">
+            <h1 class="main-navbar-title">Tarefas</h1>
+        </div>
         <TaskProgress :progress="progress"/>
-        <NewTask @create-new-task="createNewTask($event)"/>
-        <TaskGrid :tasks="tasks" 
+        <TaskForm @create-new-task="createNewTask($event)"/>
+        <TaskGrid
             @task-delete="taskDelete($event)"
             @task-toggle="taskToggle($event)"
         />
@@ -12,24 +14,26 @@
 
 <script>
 import TaskProgress from "@/components/TaskProgress.vue"
-import NewTask from "@/components/NewTask.vue"
+import TaskForm from "@/components/TaskForm.vue"
 import TaskGrid from "@/components/TaskGrid"
 
 export default {
-    components: {TaskProgress, NewTask, TaskGrid},
+    components: {TaskProgress, TaskForm, TaskGrid},
 
     created: function() {
         const json = localStorage.getItem('tasks');
         this.tasks = JSON.parse(json) || [];
     },
 
-    data() {
-        return {
-			tasks: [],
-        }
-    },
-
     computed: {
+        tasks: {
+            get: function() {
+               return this.$store.state.tasks
+            },
+            set: function(value) {
+                this.$store.commit('updateTasks', value)
+            }
+        },
         tasksDoneCount() { return this.tasks.filter(arr => !arr.pending).length },
 		progress() { 
             return this.tasks.length === 0 ? 0 : Math.round( 100 / this.tasks.length * this.tasksDoneCount);
@@ -67,23 +71,36 @@ export default {
 </script>
 
 <style>
-	body {
-		font-family: 'Lato', sans-serif;
-		background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
-		color: #FFF;
-	}
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
 
-	#app {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
+h1, h2, h3 {
+    margin: 0;
+}
 
-	#app h1 {
-		margin-bottom: 5px;
-		font-weight: 300;
-		font-size: 3rem;
-	}
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
+    color: #FFF;
+    margin: 0;
+}
+
+.main-navbar {
+    text-align: center;
+}
+
+
+.main-navbar-title {
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 2rem;
+}
+@media (min-width: 576px) {
+    .main-navbar-title {
+        margin-top: 20px;
+        font-size: 3rem;
+    }
+}
 </style>
