@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<div class="main-navbar">
-            <h1 class="main-navbar-title">Tarefas</h1>
+            <h1 class="main-navbar-title">Tasks</h1>
         </div>
         <TaskProgress :progress="progress"/>
         <TaskForm @create-new-task="createNewTask($event)"/>

@@ -1,7 +1,7 @@
 <template>
     <div class="task-form-container">
         <form class="task-form" @submit="newTask($event)">
-            <input class="task-form-input" type="text" placeholder="Nova tarefa?" maxlength="43" v-model="title">
+            <input class="task-form-input" type="text" placeholder="New task?" maxlength="43" v-model="title">
             <button class="task-form-button" @click="newTask($event)">+</button>
         </form>
     </div>

@@ -11,7 +11,7 @@
             @task-delete="$emit('task-delete', i)"
             @task-toggle="$emit('task-toggle', i)"
         />
-        <span class="no-tasks-message" v-if="tasks.length===0">Nenhuma tarefa para hoje :)</span>
+        <span class="no-tasks-message" v-if="tasks.length===0">No task for today :)</span>
     </draggable>
 </template>
 
