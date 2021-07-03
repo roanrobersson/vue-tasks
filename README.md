@@ -1,4 +1,4 @@
-# GitHub User Search
+# Vue Tasks :clipboard:
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/roanrobersson/vue-tasks/blob/master/LICENSE) 
 
 https://vue-tasks-roan.netlify.app/
